@@ -1,0 +1,66 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query{
+	getCustomer(id:Long!) : Customer
+}
+
+type Mutation {
+	saveCustomer(request:CustomerInput!) : Response
+}
+
+type Customer {
+	customerId: Long
+	name: String
+	phone: String
+	email: String
+	address: String
+	receiver: Receiver
+	creditCard: CreditCard
+}
+
+type Receiver {
+	id: Long
+	name: String
+	address: String
+}
+
+type CreditCard {
+	customerId: Long
+	cardNumber: Long
+	name: String
+	expiryDate: String
+	cvv: Int
+}
+
+input CustomerInput {
+	customerId: Long
+	name: String
+	phone: String
+	email: String
+	address: String
+	receiver: ReceiverInput
+	creditCard: CreditCardInput
+}
+
+input ReceiverInput {
+	id: Long
+	name: String
+	address: String
+}
+
+input CreditCardInput {
+	customerId: Long
+	cardNumber: Long
+	name: String
+	expiryDate: String
+	cvv: Int
+}
+
+type Response {
+	customerId: Long
+	message: String
+}
+
